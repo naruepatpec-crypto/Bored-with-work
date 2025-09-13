@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop#2: Dynamic Web [html css js]</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <h2>Case Study by Mr.Techno <hr>
+        Workshop#2: Dynamic Web [html css js]
+        <form style="display: inline-block;"><button class="readme-link" formaction="https://thinnaphatcsi.github.io/CSI205/DynamicWeb%20(HTML-CSS-JS)/README.md">README</button></form>
+        <button onclick="toggleTheme()">เปลี่ยนธีม</button>
+    </h2>
+    <!-- ข้อ 1: นาฬิกาดิจิทัล -->
+    <div class="section">
+        <h3>ข้อ 1: นาฬิกาดิจิทัลแบบเรียลไทม์</h3>
+        <div class="clock" id="clock">00:00:00</div>
+        <div>
+            <button id="toggleFormat">เปลี่ยนเป็นรูปแบบ 12 ชั่วโมง</button>
+            <button id="changeColor">เปลี่ยนสีพื้นหลัง</button>
+  <button onclick="changeClockBg()">เปลี่ยนพื้นหลังนาฬิกา</button>
+        </div>
+    </div>
+    
+    <!-- ข้อ 2: To-Do List -->
+    <div class="section">
+        <h3>ข้อ 2: รายการสิ่งที่ต้องทำ (To-Do List)</h3>
+        <div>
+            <input type="text" id="todoInput" placeholder="เพิ่มงานใหม่...">
+            <button id="addTodo">เพิ่ม</button>
+        </div>
+        <div id="todoList"></div>
+    </div>
+    
+    <!-- ข้อ 3: สภาพอากาศ -->
+    <div class="section">
+        <h3>ข้อ 3: แอพแสดงสภาพอากาศ</h3>
+        <div>
+            <input type="text" id="cityInput" placeholder="ชื่อเมือง...">
+            <button id="getWeather">ตรวจสอบสภาพอากาศ</button>
+        </div>
+        <div id="weatherResult"></div>
+    </div>
+
+    <script src="index.js">
+       
+    </script>
+</body>
+</html>
