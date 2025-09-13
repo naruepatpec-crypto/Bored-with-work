@@ -1,20 +1,32 @@
- // ข้อ 1: นาฬิกาดิจิทัล
- const clockElement = document.getElementById('clock');
- const toggleFormatBtn = document.getElementById('toggleFormat');
- const changeColorBtn = document.getElementById('changeColor');
- 
- let is12HourFormat = false;
- let colorIndex = 0;
- const colors = ['#ff9a9e', '#fad0c4', '#fbc2eb', '#a18cd1', '#ffff', '#111111'];
+// ข้อ 1: นาฬิกาดิจิทัล
+const clockElement = document.getElementById('clock');
+const toggleFormatBtn = document.getElementById('toggleFormat');
+const changeColorBtn = document.getElementById('changeColor');
 
+let is12HourFormat = true; 
+let colorIndex = 0;
 
- function updateClock() {
+// ✅ สีตัวเลข (font color)
+const textColors = ['#ff9a9e', '#fad0c4', '#fbc2eb', '#a18cd1', '#ffff', '#111111'];
+
+// ✅ พื้นหลังแบบ gradient
+const gradients = [
+    "linear-gradient(135deg, #2193b0, #6dd5ed)",
+    "linear-gradient(135deg, #ff9a9e, #fad0c4)",
+    "linear-gradient(135deg, #a8edea, #fed6e3)",
+    "linear-gradient(135deg, #12c2e9, #c471ed, #f64f59)"
+];
+
+let bgIndex = 0;
+let textIndex = 0;
+
+function updateClock() {
     const now = new Date();
     let hours = now.getHours();
     let minutes = now.getMinutes().toString().padStart(2, '0');
     let seconds = now.getSeconds().toString().padStart(2, '0');
     let ampm = '';
-    
+
     if (is12HourFormat) {
         ampm = hours >= 12 ? ' PM' : ' AM';
         hours = hours % 12 || 12;
@@ -25,47 +37,25 @@
         clockElement.textContent = `${hours}:${minutes}:${seconds}`;
     }
 }
- 
- toggleFormatBtn.addEventListener('click', () => {
-     is12HourFormat = !is12HourFormat;
-     toggleFormatBtn.textContent = is12HourFormat ? 
-         'เปลี่ยนเป็นรูปแบบ 24 ชั่วโมง' : 'เปลี่ยนเป็นรูปแบบ 12 ชั่วโมง';
-     updateClock();
- });
- 
- changeColorBtn.addEventListener('click', () => {
-     colorIndex = (colorIndex + 1) % colors.length;
-     clockElement.style.color = colors[colorIndex];
- });
- // อัพเดทเวลา
-function updateClock() {
-    const clock = document.getElementById("clock");
-    const now = new Date();
-    clock.textContent = now.toLocaleTimeString();
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-  
- 
-  const gradients = [
-    "linear-gradient(135deg, #2193b0, #6dd5ed)",
-    "linear-gradient(135deg, #ff9a9e, #fad0c4)",
-    "linear-gradient(135deg, #a8edea, #fed6e3)",
-    "linear-gradient(135deg, #12c2e9, #c471ed, #f64f59)"
-  ];
-  
-  let index = 0;
-  
-  function changeClockBg() {
-    const clock = document.getElementById("clock");
-    index = (index + 1) % gradients.length;
-    clock.style.background = gradients[index];
-  }
-  
- 
- setInterval(updateClock, 1000);
- updateClock();
- 
+
+toggleFormatBtn.addEventListener('click', () => {
+    is12HourFormat = !is12HourFormat;
+    updateClock();
+});
+
+changeColorBtn.addEventListener('click', () => {
+    textIndex = (textIndex + 1) % textColors.length;
+    clockElement.style.color = textColors[textIndex];
+});
+
+function changeClockBg() {
+    bgIndex = (bgIndex + 1) % gradients.length;
+    clockElement.style.background = gradients[bgIndex];
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
  // ข้อ 2: To-Do List
  const todoInput = document.getElementById('todoInput');
  const addTodoBtn = document.getElementById('addTodo');
@@ -148,8 +138,8 @@ function updateClock() {
      
      try {
          // จำลองการเรียก API จริง
-         const apiKey = 'your_api_key_here';
-         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+        //  const apiKey = 'your_api_key_here';
+        //  const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
          
          // ใช้การจำลองข้อมูลสำหรับตัวอย่าง
          await new Promise(resolve => setTimeout(resolve, 1000));
@@ -204,3 +194,4 @@ function updateClock() {
       root.style.setProperty('--text-color', 'white');
     }
   }
+  
